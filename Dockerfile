@@ -47,7 +47,7 @@ RUN \
   cp -R ${SERVICE_HOME}/.bash_it /root && \
   chown -R ${SERVICE_USER}:${SERVICE_USER} ${SERVICE_HOME} && \
   sed -i -e "s/bin\/ash/bin\/bash/" /etc/passwd && \
-  apk del git tzdata && \
+   && rm -f /var/cache/apk/* && \
   rm -rf /tmp/{.}* /tmp/*
 
 USER ${SERVICE_USER}
