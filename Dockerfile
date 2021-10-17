@@ -33,6 +33,7 @@ RUN \
     dumb-init \
     git \
     openssh \
+    curl \
     tzdata && \
   cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
   echo "${SYSTEM_TZ}" > /etc/TZ && \
