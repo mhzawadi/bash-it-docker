@@ -15,23 +15,26 @@ FROM bash:5
 
 MAINTAINER Maik Ellerbrock
 
-ENV VERSION 0.1.0
+ENV VERSION 0.1.1
 
 # Optional Configuration Parameter
 ARG SYSTEM_TZ
 
 # Default Settings (for optional Parameter)
-ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/Berlin}
+ENV SYSTEM_TZ ${SYSTEM_TZ:-Europe/London}
 
-ENV SERVICE_USER bashit
+ENV SERVICE_USER matt
 ENV SERVICE_HOME /home/${SERVICE_USER}
 
 RUN \
   adduser -h ${SERVICE_HOME} -s /bin/bash -u 1000 -D ${SERVICE_USER} && \
+  echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
   apk add --no-cache \
     bash-completion \
     dumb-init \
     git \
+    openssh \
+    step-cli step-certificates \
     tzdata && \
   cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
   echo "${SYSTEM_TZ}" > /etc/TZ && \
