@@ -28,13 +28,11 @@ ENV SERVICE_HOME /home/${SERVICE_USER}
 
 RUN \
   adduser -h ${SERVICE_HOME} -s /bin/bash -u 1000 -D ${SERVICE_USER} && \
-  echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
   apk add --no-cache \
     bash-completion \
     dumb-init \
     git \
     openssh \
-    step-cli step-certificates \
     tzdata && \
   cp /usr/share/zoneinfo/${SYSTEM_TZ} /etc/localtime && \
   echo "${SYSTEM_TZ}" > /etc/TZ && \
