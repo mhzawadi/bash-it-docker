@@ -2,6 +2,7 @@ name: build our image for latest
 
 on:
   push:
+    workflow_dispatch:
     branches: master
 
 jobs:
